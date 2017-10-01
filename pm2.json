@@ -1,0 +1,24 @@
+{
+  "apps": [{
+    "name": "apm",
+    "script": "index.js",
+    "log_date_format": "YYYY-MM-DD HH:mm:SS",
+    "out_file": "./logs/out.log",
+    "error_file": "./logs/err.log",
+    "pid_file": "./logs/.pid",
+    "exec_mode": "cluster",
+    "instances": 2,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_test": {
+      "NODE_ENV": "test"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "env_uat": {
+      "NODE_ENV": "uat"
+    }
+  }]
+}

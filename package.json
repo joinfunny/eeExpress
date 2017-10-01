@@ -1,0 +1,59 @@
+{
+  "name": "easy_enterprice_express",
+  "version": "0.1.0",
+  "description": "a essy enterprice express project template",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test",
+    "ee": "node index.js",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joinfunny/eeExpress.git"
+  },
+  "keywords": [
+    "node",
+    "easy",
+    "enterprice",
+    "express",
+    "log",
+    "mongo",
+    "redis",
+    "session",
+    "cookie"
+  ],
+  "author": "joinfunny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joinfunny/eeExpress/issues"
+  },
+  "homepage": "https://github.com/joinfunny/eeExpress#readme",
+  "dependencies": {
+    "archiver": "^2.0.3",
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "connect-redis": "^3.3.0",
+    "cookie-parser": "^1.4.3",
+    "deep-assign": "^2.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "express-session": "^1.15.5",
+    "i18n": "^0.8.3",
+    "ioredis": "^3.1.2",
+    "lodash": "^4.17.4",
+    "log4js": "^1.1.1",
+    "mocha": "^3.5.3",
+    "mockjs": "^1.0.1-beta3",
+    "moment": "^2.18.1",
+    "pm2": "^2.6.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.1",
+    "serve-favicon": "^2.4.3",
+    "should": "^13.1.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  }
+}

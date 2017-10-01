@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"node_modules": false,
+		"npm-debug.log.*": true
+	},
+	"search.exclude": {
+		"node_modules": true
+	},
+	"eslint.enable": true
+}
