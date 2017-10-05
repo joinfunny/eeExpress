@@ -10,3 +10,9 @@ a easy enterprice express project template
 - 支持对服务数据的Mock
 - 内建国际化多语言实现
 - 视图使用EJS模版引擎构建
+
+eeExpress
+  - runtime
+  - modules
+  - appConfig
+  - logger
