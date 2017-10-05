@@ -9,3 +9,5 @@ logs/*.pid
 
 logs
 .vscode
+npm-debug.log
+*.log
