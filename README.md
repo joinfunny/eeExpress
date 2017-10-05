@@ -2,7 +2,7 @@
 a easy enterprice express project template
 
 ### 提供的服务：
-- 使用配置对整个应用进行配置
+- 使用配置文件对整个应用进行配置
 - 内置日志记录方案
 - Session持久化支持内存／redis（单点或集群）
 - 服务支持自定义透传格式，可定义透传服务路由规则

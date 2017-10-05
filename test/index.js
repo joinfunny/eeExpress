@@ -7,7 +7,8 @@ let config = {
       'static': './test/app/statics',
       'view': './test/app/views',
       'service': './test/app/services',
-      'router': './test/app/routers'
+      'router': './test/app/routers',
+      'module': './test/app/modules'
     },
     'listenPort': '9092',
     'i18n':{

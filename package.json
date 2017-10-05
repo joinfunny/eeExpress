@@ -1,12 +1,11 @@
 {
-  "name": "easy_enterprice_express",
+  "name": "ee-express",
   "version": "0.1.0",
   "description": "a essy enterprice express project template",
   "main": "index.js",
   "scripts": {
     "test": "make test",
-    "ee": "node index.js",
-    "lint": "eslint --ext .js,.vue src"
+    "ee": "node index.js"
   },
   "repository": {
     "type": "git",
