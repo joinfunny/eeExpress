@@ -1,7 +1,5 @@
 let eeExpress = require('../../../lib/index')
 let Runtime = eeExpress.runtime
-let Modules = require('../modules')
-let SessionStore = Runtime.SessionStore
 
 module.exports = {
   '/api/user/test': {
