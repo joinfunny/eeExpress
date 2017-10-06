@@ -45,8 +45,8 @@ module.exports = {
         if (result) { next() } else {
           res.status(200).json({
             success: false,
-            code: Utils.RuntimeCodes.FaildAuthorizedUser.code,
-            msg: Utils.RuntimeCodes.FaildAuthorizedUser.msg
+            code: Utils.codes.RuntimeCodes.FaildAuthorizedUser.code,
+            msg: Utils.codes.RuntimeCodes.FaildAuthorizedUser.msg
           })
           res.end()
         }
