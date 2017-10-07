@@ -66,5 +66,6 @@ eeExpress API
       - Internationalization
       - Mock
   - modules
+  - models _`orm mapping data model`，自动加载runtime.orm.modelsRoot下的所有文件，映射为对应mongo数据库的数据表。_
   - appConfig
   - logger
