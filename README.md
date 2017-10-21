@@ -1,20 +1,21 @@
 # eeExpress
-a easy enterprice express project template
+通过对Node插件的引用、封装，创建一个简单的、企业级的Express项目框架
 
-### 提供的服务：
+### 框架特性：
 - 使用配置文件对整个应用进行配置
 - 内置日志记录方案
 - Session持久化支持内存／redis（单点或集群）
 - 服务支持自定义透传格式，可定义透传服务路由规则
 - 通过制定路由生命周期，对路由及服务的各个阶段的数据进行自定义
-- 支持对服务数据的Mock
-- 内建国际化多语言实现
+- 采用mockJS插件提供对对服务数据的Mock
+- 内建国际化多语言实现，只需要定义语言包即可
 - 视图使用EJS模版引擎构建
 
 eeExpress API
   - runtime _运行时Core_
       - App _应用类库_
           - Utils _常用工具包_
+
       - Authorization 提供默认的授权机制
       - RedisStore
           - `getInstance` _获取当前设置的RedisClient实例，当前支持两种模式：cluster和local。可以在配置文件的redis配置节中灵活调整_
