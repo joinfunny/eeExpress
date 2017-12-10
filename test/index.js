@@ -21,3 +21,5 @@ let config = {
   }
 }
 eeExpress.config(config)
+
+eeExpress.run()
