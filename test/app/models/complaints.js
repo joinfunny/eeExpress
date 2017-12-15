@@ -1,7 +1,7 @@
 module.exports = {
   tableName: 'complaints',
   schema: true,
-  connection: 'default',
+  connection: 'cluster',
   autoPK: false,
   autoCreatedAt: true,
   autoUpdatedAt: true,
