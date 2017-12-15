@@ -18,26 +18,27 @@ let config = {
     orm:{
       modelsRoot:'./test/app/models',
       'connections': {
-        default: "cluster",
         "cluster": {
           "adapter": "mongo",
+          "hostname": "127.0.0.1",
+          "port": "7000",
           "replSet": {
             "services": [
               {
-                "host": "192.168.2.155",
+                "host": "localhost",
                 "port": 7000
               },
               {
-                "host": "192.168.2.155",
+                "host": "localhost",
                 "port": 7001
               },
               {
-                "host": "192.168.2.155",
+                "host": "localhost",
                 "port": 7002
               }
             ],
             options: {
-              rs_name: "testrs"
+              "rs_name": "testrs"
             }
           }
         }
