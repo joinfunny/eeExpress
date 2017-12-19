@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "apm",
+    "name": "ee-express",
     "script": "index.js",
     "log_date_format": "YYYY-MM-DD HH:mm:SS",
     "out_file": "./logs/out.log",
