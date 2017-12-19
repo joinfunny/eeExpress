@@ -16,7 +16,7 @@ let config = {
       'router': './test/app/routers',
       'module': './test/app/modules'
     },
-    'listenPort': '9092',
+    'listenPort': '19099',
     'i18n':{
       'directory': './test/app/locales'
     },
