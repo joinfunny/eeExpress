@@ -40,7 +40,7 @@ if (cluster.isMaster) {
 } else if (cluster.isWorker) {
     console.log('[worker] ' + "start worker ..." + cluster.worker.id);
     http.createServer(function (req, res) {
-        console.log('worker'+cluster.worker.id);
+        //console.log('worker'+cluster.worker.id);
         res.end('worker'+cluster.worker.id+',PID:'+process.pid);
     }).listen(19099);
 }
