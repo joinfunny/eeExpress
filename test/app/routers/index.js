@@ -6,9 +6,10 @@ let index = 0
 router.get('/', function(req, res, next) {
   index++
   //eeExpress.logger.info('test view index :' + index)
-  //res.end('ok')
+  res.send(req.sessionID)
+  res.end()
   //res.render('index')
-  res.end('worker'+cluster.worker.id+',PID:'+process.pid);
+  //res.end('worker'+cluster.worker.id+',PID:'+process.pid);
 })
 
 

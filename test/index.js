@@ -2,13 +2,15 @@ require('mocha')
 require('should')
 let eeExpress = require('../lib/index')
 let config = {
-  runtime: {
+  app: {
     'disableAuthorize': true,
     'disableOrmMapping': true,
-    'disableSession': true,
+    'disableSession': false,
     'disableLog': true,
     'disableInternational': true,
-    'disableGzip': true,
+    'disableGzip': true
+  },
+  runtime: {
     'directory': {
       'static': './test/app/statics',
       'view': './test/app/views',
@@ -16,20 +18,29 @@ let config = {
       'router': './test/app/routers',
       'module': './test/app/modules'
     },
-    'listenPort': '19099',
-    'i18n':{
+    'listenPort': '19098',
+    'i18n': {
       'directory': './test/app/locales'
     },
-    orm:{
-      modelsRoot:'./test/app/models',
+    redis: {
+      mode: 'local'
+    },
+    session: {
+      'maxAge': 5000,
+      'store': 'redis',
+      'rolling': true,
+      'resave': false,
+      'saveUninitialized': true
+    },
+    orm: {
+      modelsRoot: './test/app/models',
       'connections': {
         "cluster": {
           "adapter": "mongo",
           "hostname": "127.0.0.1",
           "port": "7000",
           "replSet": {
-            "services": [
-              {
+            "services": [{
                 "host": "localhost",
                 "port": 7000
               },
