@@ -1,16 +1,14 @@
 let eeExpress = require('../../../lib/index')
 var router = eeExpress.Router()
 var cluster = require('cluster');
-let index = 0
+
 
 router.get('/', function(req, res, next) {
-  index++
-  //eeExpress.logger.info('test view index :' + index)
-  res.send(req.sessionID)
-  res.end()
-  //res.render('index')
-  //res.end('worker'+cluster.worker.id+',PID:'+process.pid);
+  let count = req.query.count || 0
+  for(var i = 0; i < count; i++) {
+    console.log(i)
+  }
+  res.end(req.sessionID)
 })
-
 
 module.exports = router
