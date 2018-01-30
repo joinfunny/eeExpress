@@ -1,0 +1,9 @@
+{
+	"startTime": "Start Time",
+	"endTime": "End Time",
+	"max": "max",
+	"min": "min",
+	"avg": "avg",
+	"value": "value",
+	"count": "count"
+}

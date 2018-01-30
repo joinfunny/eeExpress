@@ -3,8 +3,8 @@
  * @summary: env development config
  */
 module.exports = {
-  appName: 'testApp',
-  remoteHost: 'http://10.200.10.22:28080',
+  appName: 'sub-app-2',
+  remoteHost: 'http://10.200.10.22:28082',
   disableAuthorize: true,
   disableOrmMapping: true,
   disableSession: false,
@@ -12,11 +12,12 @@ module.exports = {
   disableInternational: true,
   disableGzip: false,
   directory: {
+    subApps: './apps',
     static: './static',
     view: './views',
     service: './services',
     router: './routers',
     module: './modules'
   },
-  listenPort: '18080'
+  listenPort: '18082'
 }
