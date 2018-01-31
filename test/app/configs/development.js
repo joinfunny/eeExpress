@@ -12,7 +12,7 @@ module.exports = {
   disableInternational: true,
   disableGzip: false,
   directory: {
-    static: './static',
+    static: './statics',
     view: './views',
     service: './services',
     router: './routers',

@@ -13,7 +13,7 @@ module.exports = {
   disableGzip: false,
   directory: {
     subApps: './apps',
-    static: './static',
+    static: './statics',
     view: './views',
     service: './services',
     router: './routers',
