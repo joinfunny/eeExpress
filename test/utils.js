@@ -40,9 +40,8 @@ describe('fileUtils.copy test', () => {
     let source = path.resolve(sourceDir, '../')
     let target = targetDir
     fileUtils.copy(source, target)
-    let exists = fs.existsSync(path.resolve(target, 'source.js'))
-    exists.should.equal(true)
-    exists = fs.existsSync(path.resolve(target, 'copy'))
-    exists.should.equal(true)
+    fs.existsSync(path.resolve(target, 'source.js')).should.equal(true)
+    fs.existsSync(path.resolve(target, 'copy')).should.equal(true)
+    exists = fs.existsSync(path.resolve(target, 'copy/other')).should.equal(true)
   })
 })
