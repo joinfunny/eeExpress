@@ -11,3 +11,4 @@ logs
 .vscode
 npm-debug.log
 *.log
+test/example/utils/copy/target/*
