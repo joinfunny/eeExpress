@@ -14,7 +14,11 @@ module.exports = {
     $: true,
     _: true,
     d3: true,
-    echarts: true
+    echarts: true,
+    // mocha should chai
+    should: true,
+    it: true,
+    describe: true
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: "standard",

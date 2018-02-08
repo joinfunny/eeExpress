@@ -6,9 +6,6 @@ let resolve = (file) => {
 }
 let fileUtils = require(resolve('utils/file.js'))
 
-function a(){ throw new Error('fail') }
-
-
 describe('fileUtils.copy test', () => {
   let sourceDir = path.resolve('./test/example/utils/copy')
   let targetDir = path.join(sourceDir, 'target')
@@ -16,14 +13,11 @@ describe('fileUtils.copy test', () => {
     fileUtils.rm(targetDir, false)
   })
 
-  it('test', () => {
-    a.should.throw(Error);
-  })
   it('source or target dose not exists', () => {
     let source = path.resolve(sourceDir, '../source.js')
     let target = targetDir
     // when we test the sence for throw error,we must build a new func
-    let copy = ()=>{
+    let copy = () => {
       fileUtils.copy(source, target)
     }
     copy.should.throw(Error)
@@ -42,6 +36,6 @@ describe('fileUtils.copy test', () => {
     fileUtils.copy(source, target)
     fs.existsSync(path.resolve(target, 'source.js')).should.equal(true)
     fs.existsSync(path.resolve(target, 'copy')).should.equal(true)
-    exists = fs.existsSync(path.resolve(target, 'copy/other')).should.equal(true)
+    fs.existsSync(path.resolve(target, 'copy/other')).should.equal(true)
   })
 })
