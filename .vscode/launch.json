@@ -25,6 +25,12 @@
       "name": "node test/app/main.js",
       "program": "${workspaceFolder}/test/app/main.js"
     },
+    {
+			"type": "node",
+			"request": "launch",
+			"name": "node test/app",
+			"program": "${workspaceRoot}/test/app/main.js"
+    },
 		{
 			"type": "node",
 			"request": "launch",
