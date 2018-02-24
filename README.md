@@ -1,8 +1,49 @@
 
 ## ee-express:
 
+**1. EEExpress.utils**
+  - `httpClient` 发起Http请求。
+    - `httpClient.get(options|Object)` GET请求,options属性有：host,url,query
+    - `httpClient.post(options|Object)` POST请求,options属性有：host,url,body
+    ```
+    #示例：
+    httpClient.get({
+      host:'http://10.200.10.22:28080',
+      url: '/user/list',
+      query: {
+        name: 'admin'
+      }
+    }).then(res => {
+      console.log(res)
+    })
+
+    httpClient.post({
+      host:'http://10.200.10.22:28080',
+      url: '/login',
+      body: {
+        name: 'admin',
+        pwd: '12345'
+      }
+    }).then(res => {
+      console.log(res)
+    })
+    ```
+  - `file`
+    - `Array getFiles(path|String)` 获取指定路径下的所有文件，最终会返回一个文件清单Array
+    - `void mkdirsSync(dirpath|String)` 创建一个不存在的文件夹，如果父文件夹不存在会自动创建
+    - `void requireDirectory(directory|String, target|Object)`将某个文件夹下的所有文件输出包装到target对象下
+    - `Object moduleDirectory(fullDirectory|String)` 将某个文件夹下的所有文件输出包装为一个模块，并返回。属性名自动转换为驼峰格式。
+    - `PromiseObject zipFolderAsync(srcFolder|String, zipDirectory|String,  fileName|String)` 异步打包某一个文件夹到另外一个文件夹
+    - `void copy(source|String, target|String)` 拷贝文件或者文件夹
+    - `void rm(rmPath|String, delRoot|Boolean)` 递归删除指定的文件夹，并可以指定是否删除最顶端的文件夹
+  - codes
+  - email
+  - tools
+  - validator
+
+**2. 创建EEExpress实例**
 ```
-let instance = new EEExpress(config, rootPath)
+let instance = new EEExpress(config|Object, rootPath|String)
 ```
 
 `config`
