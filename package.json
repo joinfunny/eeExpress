@@ -1,6 +1,6 @@
 {
   "name": "ee-express",
-  "version": "0.2.18-0",
+  "version": "0.2.18",
   "description": "a essy enterprice express project template",
   "main": "index.js",
   "scripts": {
