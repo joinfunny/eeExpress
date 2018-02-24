@@ -1,72 +1,166 @@
-# eeExpress
-通过对Node插件的引用、封装，创建一个简单的、企业级的Express项目框架
 
-### 框架特性：
-- 使用配置文件对整个应用进行配置
-- 内置日志记录方案
-- Session持久化支持内存／redis（单点或集群）
-- 服务支持自定义透传格式，可定义透传服务路由规则
-- 通过制定路由生命周期，对路由及服务的各个阶段的数据进行自定义
-- 采用mockJS插件提供对对服务数据的Mock
-- 内建国际化多语言实现，只需要定义语言包即可
-- 视图使用EJS模版引擎构建
+## ee-express:
 
-eeExpress API
-  - runtime _运行时Core_
-      - App _应用类库_
-          - Utils _常用工具包_
+```
+let instance = new EEExpress(config, rootPath)
+```
 
-      - Authorization 提供默认的授权机制
-      - RedisStore
-          - `getInstance` _获取当前设置的RedisClient实例，当前支持两种模式：cluster和local。可以在配置文件的redis配置节中灵活调整_
-          ```
-          // Redis相关配置：
-          'redis': {
-            'mode': 'local', // Redis支持两种模式，local／cluster
-            'local': { 'port': 6379, 'host': '127.0.0.1' },
-            'cluster':[
-              { 'port': 7000, 'host': '10.200.10.22' },
-              { 'port': 7001, 'host': '10.200.10.22' },
-              { 'port': 7000, 'host': '10.200.10.23' },
-              { 'port': 7001, 'host': '10.200.10.23' }
-            ]
-          }
+`config`
+> 如果instance启动的时候不指定配置，则使用`./configs`文件夹下对应环境变量的配置文件。如果没有指定环境变量，则默认使用的是`./configs/index.js`文件的配置
 
-          ```
-      - ServiceHandler _注册服务，eeExpress会自动对应配置节`runtime.directory.service`下的文件夹，将此文件夹下的所有文件注册为服务（具有特定规则的路由）_
-          - `register(service)` _服务注册方法_
-          - `router` _Express原生的`router`_
-      - Router
-          - ~~_use 暂不开放_~~
-      - SessionStore
-          - `use(app, appConfig)` _内部使用_
-          - `SKEY` _当前内部使用的Session存储的Key_
-          - `setUserId(req,userId)`:_设置用户ID_
-          - `getUserId(req)`:_获取用户ID_
-          - `setAccessInfo(requserId)`:_设置权限信息_
-          - `getAccessInfo(req)`:_获取权限信息_
-          - `setUserName(req,userName)`:_设置用户名称_
-          - `getUserName(req)`:_获取用户名称_
-          - `setUserInfo(req,userInfo)`:_设置用户信息_
-          - `getUserInfo(req)`:_获取用户信息_
-          - `getUserResource(req)`:_获取用户资源信息_
-          - `setUserResource(req,userResources)`:_设置用户资源_
-          - `checkUserResource(req,resource)`:_检查用户资源_
-          - `setXAuthToken(req,token)`:_设置oAuth2用户授权Token_
-          - `getXAuthToken(req)`:_获取oAuth2用户授权Token_
-          - `clearSession(req)`:_清除Session_
-          - `setUserCode(req,code)`:_设置用户CODE_
-          - `getUserCode(req)`:_获取用户CODE_
-          - `getSessionId(req)`:_获取当前会话ID_
-          - `setSessionId(req,sid)`:_设置当前会话ID_
-          - `getSessionAsync(req)`:_异步获取Session信息，如果存储使用Redis，可使用此方法获取当前会话Session信息_
-          - `getSessionAccessInfoAsync(req)`:_异步获取SessionAccessInfo，同上_
-          - `setSysInfoAsync(req,sysInfo)`:_异步设置系统信息_
-          - `getSysInfoAsync(req)`:_异步获取系统信息_
-      - ViewParser _此模块主要用来视图页面展示相关，目前自动启用gzip压缩，视图模版引擎默认使用ejs，并自动解析view文件夹下边的`.html`文件，并自动查找静态资源包下是否存在`favicon.ico`，如果存在则自动装载为应用的图标_
-      - Internationalization
-      - Mock
-  - modules
-  - models _`orm mapping data model`，自动加载runtime.orm.modelsRoot下的所有文件，映射为对应mongo数据库的数据表。_
-  - appConfig
-  - logger
+`rootPath`
+> 当前instance启动时可以指定其进程执行根目录，如果不指定，则默认会以当前process.cwd()作为其rootPath。在配置文件内的所有路径相关的设置都会以当前的rootPath作为基础路径。
+`instance.init()`
+> instance的初始化，app会根据当前加载的配置项进行初始化。
+
+`instance.setConfig(config)`
+> instance在启动之前可以通过`setConfig`方法指定其执行环境。不过此方法必须在init执行之前执行。否则设置无法生效。
+
+`instance.authRegister([Array|Function])`
+> instance可以通过此方法来注册自己的用户授权规则。其内置支持白名单功能，可在配置文件中设置`writeList`配置项。**==此处需要注意==**，*配置文件中的`disableAuthorize`的优先级最高，如果其配置项设置为`true`,则整个授权体系即被禁用。*
+
+`app.config`
+> app运行时生效的配置项。
+
+#### 关于配置文件中的路径
+如果设置的路径为空字符串，则系统不会加载对应的模块。比如：
+`view: ''`,则instance不会设置view
+
+默认配置：
+
+```
+/**
+ * @author: jiangfeng
+ * @summary: basic config
+ */
+module.exports = {
+  appName: 'eeExpress',
+  proxyHost: 'http://10.200.10.22:28080',
+  proxyApiPrefix: 'api',
+  disableAuthorize: true,
+  disableOrmMapping: true,
+  disableSession: false,
+  disableLog: false,
+  disableInternational: true,
+  disableGzip: false,
+  directory: {
+    static: './static',
+    view: './views',
+    service: './services',
+    router: './routers',
+    module: './modules'
+  },
+  writeList: {
+    routers: ['/', '/login'],
+    services: []
+  },
+  listenPort: '6666',
+  requestHeaders: [
+    ['Access-Control-Allow-Origin', '*'],
+    ['Access-Control-Allow-Headers', 'accept, content-type'],
+    ['X-Powered-By', 'eeExpress']
+  ],
+  pages: {
+    loginUrl: '/login',
+    errorUrl: '/404'
+  },
+  session: {
+    // 默认两天过期
+    maxAge: 7200000,
+    // 支持memory,redis
+    store: 'memory',
+    prefix: 'eeExpress:',
+    secret: 'eeExpress',
+    name: 'eeExpress',
+    // 每个请求都重新设置一个 cookie，默认为 false。
+    rolling: true,
+    // 即使 session 没有被修改，也保存 session 值，默认为 true。
+    resave: true,
+    saveUninitialized: true
+  },
+  log: 'log4js',
+  log4js: {
+    customBaseDir: './logs/',
+    customDefaultAtt: {
+      type: 'dateFile',
+      absolute: false,
+      alwaysIncludePattern: true
+    },
+    appenders: [
+      {
+        type: 'console'
+      },
+      {
+        pattern: 'yyyy-MM-dd/service-name/debug.log',
+        category: 'logDebug'
+      },
+      {
+        pattern: 'yyyy-MM-dd/service-name/info.log',
+        category: 'logInfo'
+      },
+      {
+        pattern: 'yyyy-MM-dd/service-name/warn.log',
+        category: 'logWarn'
+      },
+      {
+        pattern: 'yyyy-MM-dd/service-name/err.log',
+        category: 'logErr'
+      }
+    ],
+    replaceConsole: true,
+    levels: {
+      logDebug: 'ALL',
+      logInfo: 'ALL',
+      logWarn: 'ALL',
+      logErr: 'ALL'
+    }
+  },
+  redis: {
+    mode: 'local', // cluster
+    prefix: 'eeExpress:',
+    local: {
+      port: 6379,
+      host: '127.0.0.1'
+    }
+  },
+  i18n: {
+    locales: ['en-US', 'zh-CN'],
+    defaultLocale: 'zh-CN',
+    directory: './locales',
+    updateFiles: false,
+    autoReload: true,
+    cookie: 'lang',
+    queryParameter: 'lang',
+    indent: '\t',
+    extension: '.json'
+  },
+  email: {
+    service: 'qq',
+    port: 465,
+    secureConnection: true,
+    auth: {
+      user: '348380264@qq.com',
+      pass: 'dhrrpvicchuobhij'
+    }
+  },
+  orm: {
+    modelsRoot: './models',
+    connections: {
+      default: {
+        adapter: 'mongo',
+        hostname: 'localhost',
+        port: 27017,
+        user: 'jiangfeng',
+        password: 'Aaa12345!!',
+        database: 'sails'
+      }
+    },
+    defaults: {
+      migrate: 'safe'
+    }
+  }
+}
+```
+
+
+
