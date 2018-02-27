@@ -21,6 +21,20 @@ module.exports = app => {
           config: app.EE_EXPRESS_CONFIG
         }
       }
+    },
+    '/api/test1': {
+      method: 'get',
+      mock: {
+        user: 1
+      },
+      beforeRequest: function(req, res) {
+        req.query.id = 1
+      },
+      afterRequest: function(req, res, responseData) {
+        responseData.data = {
+          config: app.EE_EXPRESS_CONFIG
+        }
+      }
     }
   }
 }
