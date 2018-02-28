@@ -4,7 +4,7 @@
  */
 module.exports = {
   appName: 'testApp',
-  remoteHost: 'http://10.200.10.22:28080',
+  proxyHost: 'http://10.205.16.129:28082',
   disableAuthorize: true,
   disableOrmMapping: true,
   disableSession: false,
