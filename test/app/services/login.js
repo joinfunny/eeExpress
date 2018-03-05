@@ -24,6 +24,7 @@ module.exports = app => {
     "/api/server/v2/application/overview": {
       method: "post",
       beforeRequest: function(req, res) {
+        console.warn('proxy api service self before request exec.')
         req.body = {
           condition: {
             startTime: 1519778345591,
@@ -34,7 +35,8 @@ module.exports = app => {
         };
       },
       afterRequest: function(req, res, responseData) {
-        responseData.config = app.EE_EXPRESS_CONFIG
+        console.warn('proxy api service self after request exec.')
+        responseData.msg = ' changed .'
       }
     }
   };
