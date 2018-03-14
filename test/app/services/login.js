@@ -4,7 +4,10 @@ module.exports = app => {
     "/api/test": {
       method: "get",
       mock: {
-        user: 1
+        on: true,
+        dataRegular () {
+          return 1
+        }
       },
       beforeRequest: function(req, res) {
         req.query.id = 1;
