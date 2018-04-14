@@ -1,5 +1,4 @@
 module.exports = app => {
-  console.log(app.EE_EXPRESS_CONFIG);
   return {
     "/api/test": {
       method: "get",
